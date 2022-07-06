@@ -1,65 +1,42 @@
 <template>
   <q-layout view="lHh Lpr lFf">
-    <q-header elevated>
-      <q-toolbar>
-        <q-btn flat dense round icon="menu" aria-label="Menu" @click="toggleLeftDrawer" />
+    <q-header>
+      <q-toolbar :class="toolBarClass">
+        <q-btn flat dense round icon="chevron_left" aria-label="Back" @click="$router.back()" />
 
-        <q-toolbar-title>
+        <q-toolbar-title class="text-subtitle2 text-weight-regular q-pa-none">
           Oriole / {{ $filters.ToProperCase($route.name as string) }}
         </q-toolbar-title>
       </q-toolbar>
     </q-header>
 
-    <q-drawer v-model="leftDrawerOpen" show-if-above bordered>
-      <q-list>
-        <q-item-label header @click="$router.push('/')"> Oriole </q-item-label>
-
-        <EssentialLink v-for="link in essentialLinks" :key="link.title" v-bind="link" />
-      </q-list>
-    </q-drawer>
-
-    <q-page-container>
+    <q-page-container style="height: 100vh">
       <router-view />
     </q-page-container>
   </q-layout>
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from 'vue';
-import EssentialLink from 'components/EssentialLink.vue';
-
-const linksList = [
-  {
-    title: 'Reprocessing',
-    caption: 'to reprocess job',
-    icon: 'o_inventory',
-    link: '/reprocessing',
-  },
-  {
-    title: 'Delivery Order',
-    caption: 'to delivery order',
-    icon: 'o_local_shipping',
-    link: '/delivery',
-  },
-];
+import { defineComponent } from 'vue';
+import { useRouter } from 'vue-router';
 
 export default defineComponent({
   name: 'MainLayout',
 
-  components: {
-    EssentialLink,
-  },
-
   setup() {
-    const leftDrawerOpen = ref(false);
+    const $router = useRouter();
+
+    const toolBarClass = $router.currentRoute.value.meta.headerClass;
 
     return {
-      essentialLinks: linksList,
-      leftDrawerOpen,
-      toggleLeftDrawer() {
-        leftDrawerOpen.value = !leftDrawerOpen.value;
-      },
+      toolBarClass,
     };
   },
 });
 </script>
+
+<style lang="scss" scoped>
+.q-toolbar {
+  min-height: 42px;
+}
+</style>
