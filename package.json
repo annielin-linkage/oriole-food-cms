@@ -7,7 +7,12 @@
   "private": true,
   "scripts": {
     "start": "quasar dev",
-    "lint": "eslint --ext .js,.ts,.vue ./",
+    "eslint": "eslint --ext .ts,.js,.vue src",
+    "eslint:fix": "eslint --ext .ts,.js,.vue src --fix",
+    "stylelint": "stylelint src/**/**/**/*.{vue,css,sass,scss}",
+    "stylelint:fix": "stylelint src/**/**/**/*.{vue,css,sass,scss} --fix",
+    "lint:all": "npm run eslint && npm run stylelint",
+    "lint:all:fix": "npm run eslint:fix && npm run stylelint:fix",
     "format": "prettier --write \"**/*.{js,ts,vue,scss,html,md,json}\" --ignore-path .gitignore"
   },
   "dependencies": {
@@ -29,7 +34,13 @@
     "eslint": "^8.10.0",
     "eslint-config-prettier": "^8.1.0",
     "eslint-plugin-vue": "^9.0.0",
-    "prettier": "^2.5.1"
+    "prettier": "^2.5.1",
+    "stylelint": "^13.8.0",
+    "stylelint-config-prettier": "^8.0.2",
+    "stylelint-config-sass-guidelines": "^7.1.0",
+    "stylelint-config-standard": "^20.0.0",
+    "stylelint-order": "^4.1.0",
+    "stylelint-scss": "^3.18.0"
   },
   "browserslist": [
     "last 10 Chrome versions",
