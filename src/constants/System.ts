@@ -2,7 +2,7 @@ const initialState = {
   /**
    * Logo
    */
-  logo: '',
+  logo: 'logo.png',
   /**
    * Favicon
    */
@@ -14,8 +14,8 @@ const initialState = {
    * @see https://quasar.dev/style/theme-builder
    */
   color: {
-    primary: '#8aa79a',
-    secondary: '#405b53',
+    // primary: '#8aa79a',
+    // secondary: '#405b53',
   },
 };
 

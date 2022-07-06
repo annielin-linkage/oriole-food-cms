@@ -9,7 +9,7 @@
 // https://v2.quasar.dev/quasar-cli-webpack/quasar-config-js
 
 /* eslint-disable @typescript-eslint/no-var-requires */
-
+const path = require('path');
 const { configure } = require('quasar/wrappers');
 
 module.exports = configure(function (ctx) {
@@ -73,7 +73,13 @@ module.exports = configure(function (ctx) {
 
       // https://v2.quasar.dev/quasar-cli-webpack/handling-webpack
       // "chain" is a webpack-chain object https://github.com/neutrinojs/webpack-chain
-      // chainWebpack (/* chain */) {}
+      chainWebpack(chain) {
+        chain.resolve.alias
+          .set('api', path.resolve(__dirname, './src/api'))
+          .set('layouts', path.resolve(__dirname, './src/layouts'))
+          .set('partials', path.resolve(__dirname, './src/partials'))
+          .set('utils', path.resolve(__dirname, './src/utils'));
+      },
     },
 
     // Full list of options: https://v2.quasar.dev/quasar-cli-webpack/quasar-config-js#Property%3A-devServer
