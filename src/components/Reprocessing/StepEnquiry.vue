@@ -1,7 +1,7 @@
 <template>
   <Tabs :tabs="['Confirmed', 'Details']" :tab="tab">
     <template #tab-Confirmed>
-      <OrderForm />
+      <OrderForm readonly />
     </template>
     <template #tab-Details>
       <Detail />
