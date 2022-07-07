@@ -30,31 +30,34 @@
       >
         <!-- Outstanding -->
         <template #tab-Outstanding>
-          <List @onDetail="onDetail" />
+          <List :data="findOutstanding" @onDetail="onDetail" />
         </template>
         <!-- Processing -->
         <template #tab-Processing>
-          <List @onDetail="onDetail" />
+          <List :data="findProcessing" @onDetail="onDetail" />
         </template>
         <!-- Enquiry -->
         <template #tab-Enquiry>
-          <List @onDetail="onDetail" icon="search" />
+          <List :data="findEnquiry" @onDetail="onDetail" icon="search" />
         </template>
       </Tabs>
     </div>
   </div>
 
   <!-- Detail Page -->
-  <ReprocessingDetail v-model="model" :headerClass="'bg-yellow-8'" />
+  <ReprocessingDetail v-if="order" v-model="model" :headerClass="'bg-yellow-8'" :data="order" />
 </template>
 
 <script lang="ts">
 import { defineComponent, ref } from 'vue';
+import { storeToRefs } from 'pinia';
 
 import FilterDate from 'components/Input/FilterDate.vue';
 import Tabs from 'components/Tabs.vue';
 import List from 'components/List.vue';
 import ReprocessingDetail from 'partials/ReprocessingDetail.vue';
+
+import { useOrderStore, IOrder } from 'src/stores/order-store';
 
 export default defineComponent({
   name: 'Reprocessing',
@@ -67,6 +70,10 @@ export default defineComponent({
   },
 
   setup() {
+    const $storeOrder = useOrderStore();
+
+    const { findEnquiry, findOutstanding, findProcessing } = storeToRefs($storeOrder);
+
     const model = ref(false);
     const tab = ref('Outstanding');
 
@@ -75,15 +82,22 @@ export default defineComponent({
       category: '',
     });
 
-    const onDetail = () => {
+    const order = ref<IOrder>();
+
+    const onDetail = (value: IOrder) => {
       model.value = true;
+      order.value = value;
     };
 
     return {
       model,
       tab,
       filters,
+      order,
       onDetail,
+      findEnquiry,
+      findOutstanding,
+      findProcessing,
     };
   },
 });

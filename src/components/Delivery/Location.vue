@@ -3,28 +3,45 @@
     <!-- Name -->
     <div class="q-gutter-y-xs">
       <div>Name :</div>
-      <div class="text-blue-4 text-weight-regular">Big Big Cafe</div>
+      <div class="text-blue-4 text-weight-regular">{{ data.name }}</div>
     </div>
     <!-- Contact -->
     <div class="q-gutter-y-xs">
       <div>Contact :</div>
-      <div class="text-blue-4 text-weight-regular">9666 7766</div>
+      <div class="text-blue-4 text-weight-regular">{{ data.contact }}</div>
     </div>
     <!-- Address -->
     <div class="q-gutter-y-xs">
       <div>Address :</div>
-      <div class="text-blue-4 text-weight-regular">新界元朗大馬路100號</div>
+      <div class="text-blue-4 text-weight-regular">{{ data.address }}</div>
     </div>
     <q-separator color="grey-3" />
     <!-- Deliveried Time -->
     <div class="q-gutter-y-xs">
       <div>Deliveried Time :</div>
-      <div class="text-blue-4 text-weight-regular">-</div>
+      <div class="text-blue-4 text-weight-regular">{{ data.deliveriedTime ?? '-' }}</div>
     </div>
     <!-- Handled by -->
     <div class="q-gutter-y-xs">
       <div>Handled by :</div>
-      <div class="text-blue-4 text-weight-regular">-</div>
+      <div class="text-blue-4 text-weight-regular">{{ data.handledBy ?? '-' }}</div>
     </div>
   </section>
 </template>
+
+<script lang="ts">
+import { defineComponent, PropType } from 'vue';
+
+import { IDelivery } from 'src/stores/order-store';
+
+export default defineComponent({
+  name: 'Location',
+
+  props: {
+    data: {
+      type: Object as PropType<IDelivery>,
+      required: true,
+    },
+  },
+});
+</script>

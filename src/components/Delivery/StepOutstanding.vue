@@ -1,10 +1,10 @@
 <template>
   <Tabs :tabs="['Location', 'Details']" :tab="tab">
     <template #tab-Location>
-      <Location />
+      <Location v-if="data" :data="data" />
     </template>
     <template #tab-Details>
-      <Detail />
+      <Detail v-if="data" :data="data" />
     </template>
   </Tabs>
   <div class="row q-pa-lg q-pb-xl q-col-gutter-x-md bg-grey-1">
@@ -12,7 +12,6 @@
       <q-btn
         no-caps
         unelevated
-        rounded
         size="md"
         color="blue-4"
         class="text-caption full-width"
@@ -24,7 +23,6 @@
       <q-btn
         no-caps
         unelevated
-        rounded
         size="md"
         color="grey-3"
         class="text-caption full-width"
@@ -36,11 +34,12 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from 'vue';
+import { defineComponent, PropType, ref } from 'vue';
 
 import Tabs from 'components/Tabs.vue';
 import Location from 'components/Delivery/Location.vue';
 import Detail from 'components/Delivery/Detail.vue';
+import { IDelivery } from 'src/stores/order-store';
 
 export default defineComponent({
   name: 'StepOutstanding',
@@ -49,6 +48,13 @@ export default defineComponent({
     Tabs,
     Location,
     Detail,
+  },
+
+  props: {
+    data: {
+      type: Object as PropType<IDelivery>,
+      required: true,
+    },
   },
 
   emits: ['on-next', 'on-cancel'],

@@ -10,7 +10,7 @@ const routes: RouteRecordRaw[] = [
         component: () => import('layouts/MainLayout.vue'),
         children: [
           { path: 'reprocessing', name: 'reprocessing', component: () => import('pages/Reprocessing.vue'), meta: { headerClass: 'bg-yellow-8' } },
-          { path: 'delivery', name: 'delivery', component: () => import('pages/Delivery.vue'), meta: { headerClass: 'bg-blue-4' } },
+          { path: 'delivery_order', name: 'delivery_order', component: () => import('pages/Delivery.vue'), meta: { headerClass: 'bg-blue-4' } },
         ]
       }
     ],

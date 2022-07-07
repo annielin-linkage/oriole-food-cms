@@ -1,11 +1,11 @@
 <template>
   <Tabs :tabs="['Process', 'Details']" :tab="tab">
     <template #tab-Process>
-      <OrderForm />
+      <OrderForm v-if="data" :data="data" />
     </template>
     <template #tab-Details>
-      <Detail />
-      <LabourRequest />
+      <Detail v-if="data" :data="data" />
+      <LabourRequest v-if="data" :data="data" />
     </template>
   </Tabs>
 
@@ -14,7 +14,6 @@
       <q-btn
         no-caps
         unelevated
-        rounded
         size="md"
         color="yellow-8"
         class="text-caption full-width"
@@ -26,7 +25,6 @@
       <q-btn
         no-caps
         unelevated
-        rounded
         size="md"
         color="grey-3"
         class="text-caption full-width"
@@ -38,21 +36,29 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from 'vue';
+import { defineComponent, PropType, ref } from 'vue';
 
 import Tabs from 'components/Tabs.vue';
 import OrderForm from 'components/Reprocessing/OrderForm.vue';
 import Detail from 'components/Reprocessing/Detail.vue';
 import LabourRequest from 'components/Reprocessing/LabourRequest.vue';
+import { IOrder } from 'src/stores/order-store';
 
 export default defineComponent({
-  name: 'StepOutstanding',
+  name: 'StepProcessing',
 
   components: {
     Tabs,
     OrderForm,
     Detail,
     LabourRequest,
+  },
+
+  props: {
+    data: {
+      type: Object as PropType<IOrder>,
+      required: true,
+    },
   },
 
   emits: ['on-next', 'on-save'],

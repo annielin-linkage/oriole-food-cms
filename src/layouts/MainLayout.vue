@@ -5,7 +5,7 @@
         <q-btn flat dense round icon="chevron_left" aria-label="Back" @click="$router.back()" />
 
         <q-toolbar-title class="text-subtitle2 text-weight-regular q-pa-none">
-          Oriole / {{ $filters.ToProperCase($route.name as string) }}
+          Oriole / {{ $filters.ToProperCase($route.name as string).replace('_', ' ') }}
         </q-toolbar-title>
       </q-toolbar>
     </q-header>

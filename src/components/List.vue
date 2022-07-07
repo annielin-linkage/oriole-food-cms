@@ -1,13 +1,13 @@
 <template>
   <q-list>
     <!-- 一筆訂單 開始 -->
-    <div v-for="i of 10" :key="i">
-      <q-item clickable v-ripple @click="$emit('onDetail')">
+    <div v-for="i of data" :key="i.id">
+      <q-item clickable v-ripple @click="$emit('onDetail', i)">
         <q-item-section>
           <q-item-label class="text-subtitle2 text-weight-regular text-blue-11">
-            DN2206220001
+            {{ i.orderNo }}
           </q-item-label>
-          <q-item-label caption class="text-grey-5">Create: 07/05/2022 15:33</q-item-label>
+          <q-item-label caption class="text-grey-5">Create: {{ i.create }}</q-item-label>
         </q-item-section>
         <q-item-section side top>
           <q-icon flat round color="blue-11" :name="icon" />
@@ -20,15 +20,25 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from 'vue';
+import { defineComponent, ref, PropType } from 'vue';
+
+import { IOrder, IDelivery } from 'src/stores/order-store';
 
 export default defineComponent({
-  name: 'DeliveryList',
+  name: 'List',
 
   props: {
     icon: {
       type: String,
       default: 'edit',
+    },
+    data: {
+      type: Array as PropType<IOrder[] | IDelivery[]>,
+      default: () => [],
+    },
+    delivery: {
+      type: Boolean,
+      default: false,
     },
   },
 

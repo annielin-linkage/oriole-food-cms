@@ -2,7 +2,11 @@
   <div class="q-gutter-y-lg q-pa-lg">
     <div class="q-gutter-y-md">
       <div class="text-body2">1. Signin</div>
-      <div v-for="staff in staffBarcodes" :key="staff.id" class="row q-gutter-x-sm">
+      <div
+        v-for="staff in readonly ? data.signin : staffBarcodes"
+        :key="staff.id"
+        class="row q-gutter-x-sm"
+      >
         <q-input
           outlined
           dense
@@ -21,16 +25,16 @@
           color="grey-8"
           label="Scan"
           class="text-weight-regular col"
-          style="opacity: 0.6"
+          style="opacity: 0.6; min-width: 80px"
         />
       </div>
     </div>
 
     <div class="q-gutter-y-md">
       <div class="text-body2">2. Stock Out</div>
-      <div v-for="stockIn in stockInBarcodes" :key="stockIn.id">
+      <div v-for="stockIn in readonly ? data.stockOut : stockOutBarcodes" :key="stockIn.id">
         <div class="flex justify-between text-body2 text-blue-13 q-my-sm" style="opacity: 0.6">
-          <i>{{ stockIn.name }}</i>
+          <i>{{ stockIn.stockNo }}</i>
           <i>x{{ stockIn.qty }}</i>
         </div>
         <div class="row q-gutter-x-sm">
@@ -52,7 +56,7 @@
             color="grey-8"
             label="Scan"
             class="text-weight-regular col"
-            style="opacity: 0.6"
+            style="opacity: 0.6; min-width: 80px"
           />
         </div>
       </div>
@@ -60,62 +64,92 @@
 
     <div>
       <div class="text-body2">3. Start Reprocess</div>
-      <q-btn
-        v-if="!form.startReprocess"
-        unelevated
-        no-caps
-        color="grey-8"
-        label="Start Record"
-        class="full-width text-weight-regular q-my-md"
-        style="opacity: 0.6"
-        @click="getTime('startReprocess')"
-      />
-      <q-input
-        v-else
-        outlined
-        dense
-        readonly
-        label="start record"
-        bg-color="grey-1"
-        color="grey-8"
-        style="opacity: 0.6"
-        class="col"
-        :model-value="form.startReprocess"
-      />
+      <template v-if="readonly">
+        <q-input
+          outlined
+          dense
+          readonly
+          label="start printing"
+          bg-color="grey-1"
+          color="grey-8"
+          style="opacity: 0.6"
+          class="col q-my-md"
+          :model-value="data.startReprocess"
+        />
+      </template>
+      <template v-else>
+        <q-btn
+          v-if="!form.startReprocess"
+          unelevated
+          no-caps
+          color="grey-8"
+          label="Start Record"
+          class="full-width text-weight-regular q-my-md"
+          style="opacity: 0.6"
+          @click="getTime('startReprocess')"
+        />
+        <q-input
+          v-else
+          outlined
+          dense
+          readonly
+          label="start record"
+          bg-color="grey-1"
+          color="grey-8"
+          style="opacity: 0.6"
+          class="col q-my-md"
+          :model-value="form.startReprocess"
+        />
+      </template>
     </div>
 
     <div>
       <div class="text-body2">4. Printing Labels</div>
-      <q-btn
-        v-if="!form.printingLabels"
-        unelevated
-        no-caps
-        color="grey-8"
-        label="Start Printing"
-        class="full-width text-weight-regular q-my-md"
-        style="opacity: 0.6"
-        @click="getTime('printingLabels')"
-      />
-      <q-input
-        v-else
-        outlined
-        dense
-        readonly
-        label="start printing"
-        bg-color="grey-1"
-        color="grey-8"
-        style="opacity: 0.6"
-        class="col"
-        :model-value="form.printingLabels"
-      />
+      <template v-if="readonly">
+        <q-input
+          outlined
+          dense
+          readonly
+          label="start printing"
+          bg-color="grey-1"
+          color="grey-8"
+          style="opacity: 0.6"
+          class="col q-my-md"
+          :model-value="data.printingLabels"
+        />
+      </template>
+      <template v-else>
+        <q-btn
+          v-if="!form.printingLabels"
+          unelevated
+          no-caps
+          color="grey-8"
+          label="Start Printing"
+          class="full-width text-weight-regular q-my-md"
+          style="opacity: 0.6"
+          @click="getTime('printingLabels')"
+        />
+        <q-input
+          v-else
+          outlined
+          dense
+          readonly
+          label="start printing"
+          bg-color="grey-1"
+          color="grey-8"
+          style="opacity: 0.6"
+          class="col q-my-md"
+          :model-value="form.printingLabels"
+        />
+      </template>
     </div>
 
     <div>
       <div class="text-body2">5. Stock In</div>
-      <div v-for="stockOut in stockInBarcodes" :key="stockOut.id">
+      <div>
         <div class="flex justify-between text-body2 text-blue-13 q-my-sm" style="opacity: 0.6">
-          <i>{{ stockOut.name }}</i>
-          <i>x{{ stockOut.qty }}</i>
+          <i>{{ readonly ? data.stockIn.stockNo : stockInBarcodes.stockNo }}</i>
+          <i>x{{ readonly ? data.stockIn.qty : stockInBarcodes.qty }}</i>
         </div>
         <div class="row q-gutter-x-sm">
           <q-input
@@ -127,7 +161,7 @@
             style="opacity: 0.6"
             :class="readonly && 'col'"
             :readonly="readonly"
-            :model-value="stockOut.barcode"
+            :model-value="data.stockIn.barcode"
           />
           <q-btn
             v-if="!readonly"
@@ -136,7 +170,7 @@
             color="grey-8"
             label="Scan"
             class="text-weight-regular col"
-            style="opacity: 0.6"
+            style="opacity: 0.6; min-width: 80px"
           />
         </div>
       </div>
@@ -151,7 +185,7 @@
         </thead>
         <!-- TODO: dispatch data -->
         <tbody v-if="readonly">
-          <tr v-for="stockInItem in stockIntList" :key="stockInItem.id">
+          <tr v-for="stockInItem in data.stockInList" :key="stockInItem.id">
             <td>{{ stockInItem.sku }}</td>
             <td class="text-weight-regular text-body2 text-grey-8 text-center">
               {{ stockInItem.weight }}
@@ -167,8 +201,10 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from 'vue';
+import { defineComponent, PropType, ref } from 'vue';
 import { uid, date } from 'quasar';
+
+import { IOrder } from 'src/stores/order-store';
 
 export default defineComponent({
   name: 'OrderForm',
@@ -177,6 +213,10 @@ export default defineComponent({
       type: Boolean,
       default: false,
     },
+    data: {
+      type: Object as PropType<IOrder>,
+      required: true,
+    },
   },
   setup() {
     const staffBarcodes = ref([
@@ -184,9 +224,12 @@ export default defineComponent({
       { id: uid(), barcode: '', qty: 8 },
     ]);
 
-    const stockInBarcodes = ref([{ id: uid(), name: 'ZZBU018', barcode: '', qty: 8 }]);
+    const stockOutBarcodes = ref([
+      { id: uid(), stockNo: 'ZZBU018', barcode: '', qty: 1 },
+      { id: uid(), stockNo: 'PL01234', barcode: '', qty: 8 },
+    ]);
 
-    const stockOutBarcodes = ref([{ id: uid(), name: 'ZZBU018', barcode: '' }]);
+    const stockInBarcodes = ref({ id: uid(), stockNo: 'ZZBU018', barcode: '', qty: 8 });
 
     const stockIntList = ref([
       { id: uid(), sku: '0378585742', weight: '250g', qty: 2 },

@@ -6,7 +6,7 @@
         <q-btn flat dense round icon="chevron_left" aria-label="Back" @click="onBack()" />
 
         <q-toolbar-title class="text-subtitle2 text-weight-regular q-pa-none">
-          DN2206220001
+          {{ data.orderNo }}
         </q-toolbar-title>
       </q-toolbar>
 
@@ -17,10 +17,10 @@
         :step="step"
       >
         <template #step-Outstanding>
-          <StepOutstanding @on-next="onNext()" @on-cancel="onCancel()" />
+          <StepOutstanding @on-next="onNext()" @on-cancel="onCancel()" :data="data" />
         </template>
         <template #step-Enquiry>
-          <StepEnquiry @on-cancel="onCancel()" />
+          <StepEnquiry @on-cancel="onCancel()" :data="data" />
         </template>
       </StepTabs>
     </q-card>
@@ -28,13 +28,14 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from 'vue';
+import { defineComponent, PropType, ref } from 'vue';
 
 import { useModelWrapper } from 'utils/hooks';
 
 import StepTabs from 'components/StepTabs.vue';
 import StepOutstanding from 'components/Delivery/StepOutstanding.vue';
 import StepEnquiry from 'components/Delivery/StepEnquiry.vue';
+import { IDelivery } from 'src/stores/order-store';
 
 export default defineComponent({
   name: 'DeliveryDetail',
@@ -49,6 +50,10 @@ export default defineComponent({
     modelValue: {
       type: Boolean,
       default: false,
+    },
+    data: {
+      type: Object as PropType<IDelivery>,
+      required: true,
     },
   },
 

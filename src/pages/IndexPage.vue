@@ -18,7 +18,6 @@
         <q-btn
           no-caps
           unelevated
-          rounded
           size="md"
           color="yellow-8"
           class="text-caption"
@@ -30,13 +29,12 @@
         <q-btn
           no-caps
           unelevated
-          rounded
           size="md"
           color="blue-4"
           class="text-caption"
           label="Delivery Order"
           style="width: 210px"
-          @click="$router.push('/delivery')"
+          @click="$router.push('/delivery_order')"
         />
       </div>
     </section>
