@@ -5,6 +5,7 @@
     </template>
     <template #tab-Details>
       <Detail />
+      <LabourRequest />
     </template>
   </Tabs>
 
@@ -42,6 +43,7 @@ import { defineComponent, ref } from 'vue';
 import Tabs from 'components/Tabs.vue';
 import OrderForm from 'components/Reprocessing/OrderForm.vue';
 import Detail from 'components/Reprocessing/Detail.vue';
+import LabourRequest from 'components/Reprocessing/LabourRequest.vue';
 
 export default defineComponent({
   name: 'StepOutstanding',
@@ -50,6 +52,7 @@ export default defineComponent({
     Tabs,
     OrderForm,
     Detail,
+    LabourRequest,
   },
 
   emits: ['on-next', 'on-save'],

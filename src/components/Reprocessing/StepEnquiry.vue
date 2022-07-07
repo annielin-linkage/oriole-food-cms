@@ -5,6 +5,7 @@
     </template>
     <template #tab-Details>
       <Detail />
+      <LabourRequest />
     </template>
   </Tabs>
   <div class="flex justify-center items-center q-pa-lg q-pb-xl bg-grey-1">
@@ -28,12 +29,14 @@ import { defineComponent, ref } from 'vue';
 import Tabs from 'components/Tabs.vue';
 import OrderForm from 'components/Reprocessing/OrderForm.vue';
 import Detail from 'components/Reprocessing/Detail.vue';
+import LabourRequest from 'components/Reprocessing/LabourRequest.vue';
 
 export default defineComponent({
   components: {
     Tabs,
     OrderForm,
     Detail,
+    LabourRequest,
   },
 
   emits: ['on-cancel'],
