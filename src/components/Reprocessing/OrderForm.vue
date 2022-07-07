@@ -2,11 +2,7 @@
   <div class="q-gutter-y-lg q-pa-lg">
     <div class="q-gutter-y-md">
       <div class="text-body2">1. Signin</div>
-      <div
-        v-for="staff in readonly ? data.signin : staffBarcodes"
-        :key="staff.id"
-        class="row q-gutter-x-sm"
-      >
+      <div v-for="staff in readonly ? data.signin : staffBarcodes" :key="staff.id" class="row">
         <q-input
           outlined
           dense
@@ -14,7 +10,7 @@
           bg-color="grey-1"
           color="grey-8"
           style="opacity: 0.6"
-          :class="readonly && 'col-8'"
+          :class="readonly ? 'col-12' : 'col-8'"
           :readonly="readonly"
           :model-value="staff.barcode"
         />
@@ -24,7 +20,7 @@
           no-caps
           color="grey-8"
           label="Scan"
-          class="text-weight-regular col-3"
+          class="text-weight-regular col-4"
           style="opacity: 0.6"
         />
       </div>
@@ -37,7 +33,7 @@
           <i>{{ stockIn.stockNo }}</i>
           <i>x{{ stockIn.qty }}</i>
         </div>
-        <div class="row q-gutter-x-sm">
+        <div class="row">
           <q-input
             outlined
             dense
@@ -45,7 +41,7 @@
             bg-color="grey-1"
             color="grey-8"
             style="opacity: 0.6"
-            :class="readonly && 'col-8'"
+            :class="readonly ? 'col-12' : 'col-8'"
             :readonly="readonly"
             :model-value="stockIn.barcode"
           />
@@ -55,7 +51,7 @@
             no-caps
             color="grey-8"
             label="Scan"
-            class="text-weight-regular col-3"
+            class="text-weight-regular col-4"
             style="opacity: 0.6"
           />
         </div>
@@ -151,7 +147,7 @@
           <i>{{ readonly ? data.stockIn.stockNo : stockInBarcodes.stockNo }}</i>
           <i>x{{ readonly ? data.stockIn.qty : stockInBarcodes.qty }}</i>
         </div>
-        <div class="row q-gutter-x-sm">
+        <div class="row">
           <q-input
             outlined
             dense
@@ -159,7 +155,7 @@
             bg-color="grey-1"
             color="grey-8"
             style="opacity: 0.6"
-            :class="readonly && 'col-8'"
+            :class="readonly ? 'col-12' : 'col-8'"
             :readonly="readonly"
             :model-value="data.stockIn.barcode"
           />
@@ -169,7 +165,7 @@
             no-caps
             color="grey-8"
             label="Scan"
-            class="text-weight-regular col-3"
+            class="text-weight-regular col-4"
             style="opacity: 0.6"
           />
         </div>
