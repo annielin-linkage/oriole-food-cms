@@ -61,24 +61,52 @@
     <div>
       <div class="text-body2">3. Start Reprocess</div>
       <q-btn
+        v-if="!form.startReprocess"
         unelevated
         no-caps
         color="grey-8"
         label="Start Record"
         class="full-width text-weight-regular q-my-md"
         style="opacity: 0.6"
+        @click="getTime('startReprocess')"
+      />
+      <q-input
+        v-else
+        outlined
+        dense
+        readonly
+        label="start record"
+        bg-color="grey-1"
+        color="grey-8"
+        style="opacity: 0.6"
+        class="col"
+        :model-value="form.startReprocess"
       />
     </div>
 
     <div>
       <div class="text-body2">4. Printing Labels</div>
       <q-btn
+        v-if="!form.printingLabels"
         unelevated
         no-caps
         color="grey-8"
         label="Start Printing"
         class="full-width text-weight-regular q-my-md"
         style="opacity: 0.6"
+        @click="getTime('printingLabels')"
+      />
+      <q-input
+        v-else
+        outlined
+        dense
+        readonly
+        label="start printing"
+        bg-color="grey-1"
+        color="grey-8"
+        style="opacity: 0.6"
+        class="col"
+        :model-value="form.printingLabels"
       />
     </div>
 
@@ -140,7 +168,7 @@
 
 <script lang="ts">
 import { defineComponent, ref } from 'vue';
-import { uid } from 'quasar';
+import { uid, date } from 'quasar';
 
 export default defineComponent({
   name: 'OrderForm',
@@ -166,11 +194,27 @@ export default defineComponent({
       { id: uid(), sku: '0378585742', weight: '248g', qty: 2 },
     ]);
 
+    const form = ref({
+      startReprocess: '',
+      printingLabels: '',
+    });
+
+    const getTime = (input: string) => {
+      const dateTime = ref(date.formatDate(new Date(), 'DD/MM/YYYY HH:mm'));
+      if (input === 'startReprocess') {
+        form.value.startReprocess = dateTime.value;
+      } else if (input === 'printingLabels') {
+        form.value.printingLabels = dateTime.value;
+      }
+    };
+
     return {
+      form,
       staffBarcodes,
       stockInBarcodes,
       stockOutBarcodes,
       stockIntList,
+      getTime,
     };
   },
 });

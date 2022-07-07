@@ -5,11 +5,18 @@
       <section class="text-weight-light text-body2 q-pa-lg q-gutter-y-md">
         <div>
           <div>Create Date :</div>
-          <FilterDate />
+          <FilterDate :rules="[]" v-model="filters.date" />
         </div>
         <div>
           <div>Category :</div>
-          <FilterDate />
+          <q-select
+            clearable
+            filled
+            dense
+            color="grey-8"
+            v-model="filters.category"
+            :options="['Category1', 'Category2', 'Category3']"
+          />
         </div>
       </section>
     </div>
@@ -31,7 +38,7 @@
         </template>
         <!-- Enquiry -->
         <template #tab-Enquiry>
-          <List @onDetail="onDetail" />
+          <List @onDetail="onDetail" icon="search" />
         </template>
       </Tabs>
     </div>
@@ -63,6 +70,11 @@ export default defineComponent({
     const model = ref(false);
     const tab = ref('Outstanding');
 
+    const filters = ref({
+      date: '',
+      category: '',
+    });
+
     const onDetail = () => {
       model.value = true;
     };
@@ -70,6 +82,7 @@ export default defineComponent({
     return {
       model,
       tab,
+      filters,
       onDetail,
     };
   },

@@ -30,7 +30,7 @@
         size="md"
         color="grey-3"
         class="text-caption full-width"
-        label="Cancel"
+        label="Save"
         @click="onSave()"
       />
     </div>

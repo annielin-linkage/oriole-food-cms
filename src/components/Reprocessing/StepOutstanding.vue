@@ -1,5 +1,6 @@
 <template>
-  <div>Outstanding</div>
+  <Detail />
+  <LabourRequest />
   <div class="flex justify-center items-center q-pa-lg q-pb-xl bg-grey-1">
     <q-btn
       no-caps
@@ -18,7 +19,15 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
 
+import Detail from 'components/Reprocessing/Detail.vue';
+import LabourRequest from 'components/Reprocessing/LabourRequest.vue';
+
 export default defineComponent({
+  components: {
+    Detail,
+    LabourRequest,
+  },
+
   emits: ['on-next'],
 
   setup(props, context) {

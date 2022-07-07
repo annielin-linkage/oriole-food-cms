@@ -5,11 +5,11 @@
       <section class="text-weight-light text-body2 q-pa-lg q-gutter-y-md">
         <div>
           <div>From :</div>
-          <FilterDate />
+          <FilterDate :rules="[]" v-model="filters.dateFrom" />
         </div>
         <div>
           <div>To :</div>
-          <FilterDate />
+          <FilterDate :rules="[]" v-model="filters.dateTo" />
         </div>
       </section>
     </div>
@@ -19,7 +19,7 @@
         <!-- Outstanding -->
         <template #tab-Outstanding> <List @onDetail="onDetail" /></template>
         <!-- Enquiry -->
-        <template #tab-Enquiry> <List @onDetail="onDetail" /></template>
+        <template #tab-Enquiry> <List @onDetail="onDetail" icon="search" /></template>
       </Tabs>
     </div>
   </div>
@@ -49,6 +49,11 @@ export default defineComponent({
     const model = ref(false);
     const tab = ref('Outstanding');
 
+    const filters = ref({
+      dateFrom: '',
+      dateTo: '',
+    });
+
     const onDetail = () => {
       model.value = true;
     };
@@ -56,6 +61,7 @@ export default defineComponent({
     return {
       model,
       tab,
+      filters,
       onDetail,
     };
   },
