@@ -704,7 +704,7 @@ export const InitialOrderState = (): { order: IOrder[], delivery: IDelivery[] } 
       address: '新界元朗大馬路 100 號',
       deliveriedTime: '-',
       handledBy: '-',
-      orderNo: 'DN2206220005',
+      orderNo: 'DN2106220005',
       source: [
         { id: uid(), stockNo: 'ZZBU018', qty: 1, barcode: '', description: '冰鮮美國極佳級安格斯(Prime CAB) 西冷2公斤' },
         { id: uid(), stockNo: 'CTMW03', qty: 20, barcode: '', description: '急凍泰國雞中翼(業務裝)1公斤裝' },
@@ -720,7 +720,7 @@ export const InitialOrderState = (): { order: IOrder[], delivery: IDelivery[] } 
       address: '新界元朗大馬路 100 號',
       deliveriedTime: '-',
       handledBy: '-',
-      orderNo: 'DN2206220004',
+      orderNo: 'DN2106220004',
       source: [
         { id: uid(), stockNo: 'ZZBU018', qty: 1, barcode: '', description: '冰鮮美國極佳級安格斯(Prime CAB) 西冷2公斤' },
         { id: uid(), stockNo: 'CTMW03', qty: 20, barcode: '', description: '急凍泰國雞中翼(業務裝)1公斤裝' },
@@ -736,7 +736,7 @@ export const InitialOrderState = (): { order: IOrder[], delivery: IDelivery[] } 
       address: '新界元朗大馬路 100 號',
       deliveriedTime: '-',
       handledBy: '-',
-      orderNo: 'DN2206220003',
+      orderNo: 'DN2106220003',
       source: [
         { id: uid(), stockNo: 'ZZBU018', qty: 1, barcode: '', description: '冰鮮美國極佳級安格斯(Prime CAB) 西冷2公斤' },
         { id: uid(), stockNo: 'CTMW03', qty: 20, barcode: '', description: '急凍泰國雞中翼(業務裝)1公斤裝' },
@@ -752,7 +752,7 @@ export const InitialOrderState = (): { order: IOrder[], delivery: IDelivery[] } 
       address: '新界元朗大馬路 100 號',
       deliveriedTime: '-',
       handledBy: '-',
-      orderNo: 'DN2206220002',
+      orderNo: 'DN2106220002',
       source: [
         { id: uid(), stockNo: 'ZZBU018', qty: 1, barcode: '', description: '冰鮮美國極佳級安格斯(Prime CAB) 西冷2公斤' },
         { id: uid(), stockNo: 'CTMW03', qty: 20, barcode: '', description: '急凍泰國雞中翼(業務裝)1公斤裝' },
