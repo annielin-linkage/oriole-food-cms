@@ -12,10 +12,10 @@
 
       <StepTabs :steps="['Outstanding', 'Enquiry']" :step="step">
         <template #step-Outstanding>
-          <StepOutstanding />
+          <StepOutstanding @on-next="onNext()" @on-cancel="onCancel()" />
         </template>
         <template #step-Enquiry>
-          <StepEnquiry />
+          <StepEnquiry @on-cancel="onCancel()" />
         </template>
       </StepTabs>
     </q-card>
@@ -48,6 +48,7 @@ export default defineComponent({
   },
 
   emits: ['update:modelValue'],
+
   setup(props, context) {
     const model = ref(useModelWrapper(props, context.emit, 'modelValue'));
 
@@ -57,10 +58,20 @@ export default defineComponent({
       model.value = false;
     };
 
+    const onNext = () => {
+      step.value = 'Enquiry';
+    };
+
+    const onCancel = () => {
+      model.value = false;
+    };
+
     return {
       model,
       step,
       onBack,
+      onNext,
+      onCancel,
     };
   },
 });

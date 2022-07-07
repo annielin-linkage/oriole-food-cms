@@ -2,7 +2,6 @@
   <div>
     <!-- Step -->
     <Step :value="steps" :step="stepActive" />
-
     <!-- Step Tabs -->
     <q-tab-panels v-model="stepActive" animated class="q-mt-lg">
       <q-tab-panel
@@ -18,7 +17,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from 'vue';
+import { defineComponent, ref, watch } from 'vue';
 
 import Step from 'components/Step.vue';
 
@@ -42,6 +41,13 @@ export default defineComponent({
 
   setup(props) {
     const stepActive = ref(props.step);
+
+    watch(
+      () => props.step,
+      v => {
+        stepActive.value = v;
+      }
+    );
 
     return { stepActive };
   },
