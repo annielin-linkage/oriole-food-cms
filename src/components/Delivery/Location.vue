@@ -19,12 +19,12 @@
     <!-- Deliveried Time -->
     <div class="q-gutter-y-xs">
       <div>Deliveried Time :</div>
-      <div class="text-blue-4 text-weight-regular">{{ data.deliveriedTime ?? '-' }}</div>
+      <div class="text-blue-4 text-weight-regular">{{ done ? data.deliveriedTime : '-' }}</div>
     </div>
     <!-- Handled by -->
     <div class="q-gutter-y-xs">
       <div>Handled by :</div>
-      <div class="text-blue-4 text-weight-regular">{{ data.handledBy ?? '-' }}</div>
+      <div class="text-blue-4 text-weight-regular">{{ done ? data.handledBy : '-' }}</div>
     </div>
   </section>
 </template>
@@ -41,6 +41,10 @@ export default defineComponent({
     data: {
       type: Object as PropType<IDelivery>,
       required: true,
+    },
+    done: {
+      type: Boolean,
+      default: false,
     },
   },
 });

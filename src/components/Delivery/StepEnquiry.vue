@@ -1,7 +1,7 @@
 <template>
   <Tabs :tabs="['Location', 'Details']" :tab="tab">
     <template #tab-Location>
-      <Location v-if="data" :data="data" />
+      <Location v-if="data" :data="data" done />
     </template>
     <template #tab-Details>
       <Detail v-if="data" :data="data" />

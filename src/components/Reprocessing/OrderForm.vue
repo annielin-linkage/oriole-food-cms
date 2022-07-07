@@ -12,7 +12,7 @@
           style="opacity: 0.6"
           :class="readonly ? 'col-12' : 'col-8'"
           :readonly="readonly"
-          :model-value="staff.barcode"
+          v-model="staff.barcode"
         />
         <q-btn
           v-if="!readonly"
@@ -43,7 +43,7 @@
             style="opacity: 0.6"
             :class="readonly ? 'col-12' : 'col-8'"
             :readonly="readonly"
-            :model-value="stockIn.barcode"
+            v-model="stockIn.barcode"
           />
           <q-btn
             v-if="!readonly"
@@ -94,7 +94,7 @@
           color="grey-8"
           style="opacity: 0.6"
           class="col q-my-md"
-          :model-value="form.startReprocess"
+          v-model="form.startReprocess"
         />
       </template>
     </div>
@@ -135,7 +135,7 @@
           color="grey-8"
           style="opacity: 0.6"
           class="col q-my-md"
-          :model-value="form.printingLabels"
+          v-model="form.printingLabels"
         />
       </template>
     </div>
@@ -149,6 +149,7 @@
         </div>
         <div class="row">
           <q-input
+            v-if="readonly"
             outlined
             dense
             label="Generate Barcode"
@@ -158,6 +159,18 @@
             :class="readonly ? 'col-12' : 'col-8'"
             :readonly="readonly"
             :model-value="data.stockIn.barcode"
+          />
+          <q-input
+            v-else
+            outlined
+            dense
+            label="Generate Barcode"
+            bg-color="grey-1"
+            color="grey-8"
+            style="opacity: 0.6"
+            :class="readonly ? 'col-12' : 'col-8'"
+            :readonly="readonly"
+            v-model="barcode"
           />
           <q-btn
             v-if="!readonly"
@@ -238,6 +251,8 @@ export default defineComponent({
       printingLabels: '',
     });
 
+    const barcode = ref();
+
     const getTime = (input: string) => {
       const dateTime = ref(date.formatDate(new Date(), 'DD/MM/YYYY HH:mm'));
       if (input === 'startReprocess') {
@@ -249,6 +264,7 @@ export default defineComponent({
 
     return {
       form,
+      barcode,
       staffBarcodes,
       stockInBarcodes,
       stockOutBarcodes,
