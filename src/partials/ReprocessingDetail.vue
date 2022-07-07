@@ -1,8 +1,8 @@
 <template>
   <q-dialog maximized transition-show="slide-left" transition-hide="slide-right" v-model="model">
-    <q-card>
+    <q-card class="column" style="height: 100vh">
       <!-- Header -->
-      <q-toolbar class="text-white" :class="headerClass">
+      <q-toolbar class="bg-yellow-8 text-white col-auto">
         <q-btn flat dense round icon="chevron_left" aria-label="Back" @click="onBack()" />
 
         <q-toolbar-title class="text-subtitle2 text-weight-regular q-pa-none">
@@ -10,7 +10,12 @@
         </q-toolbar-title>
       </q-toolbar>
 
-      <StepTabs :steps="['Outstanding', 'Processing', 'Enquiry']" :step="step">
+      <StepTabs
+        class="col scroll"
+        style="overflow-y: scroll"
+        :steps="['Outstanding', 'Processing', 'Enquiry']"
+        :step="step"
+      >
         <template #step-Outstanding>
           <StepOutstanding @on-next="onNext('Processing')" />
         </template>
@@ -49,10 +54,6 @@ export default defineComponent({
     modelValue: {
       type: Boolean,
       default: false,
-    },
-    headerClass: {
-      type: String,
-      default: '',
     },
   },
 
