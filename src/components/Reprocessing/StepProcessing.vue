@@ -8,7 +8,7 @@
     </template>
   </Tabs>
 
-  <div class="row q-pa-lg q-col-gutter-x-md">
+  <div class="row q-col-gutter-x-md q-pa-lg q-pb-xl bg-grey-1">
     <div class="col-7">
       <q-btn
         no-caps

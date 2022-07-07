@@ -7,7 +7,7 @@
       <Detail />
     </template>
   </Tabs>
-  <div class="row q-pa-lg q-col-gutter-x-md">
+  <div class="row q-pa-lg q-pb-xl q-col-gutter-x-md bg-grey-1">
     <div class="col-7">
       <q-btn
         no-caps
@@ -17,7 +17,7 @@
         color="blue-4"
         class="text-caption full-width"
         label="Completed"
-        @click="onCompleted()"
+        @click="onNext()"
       />
     </div>
     <div class="col-5">
@@ -51,13 +51,13 @@ export default defineComponent({
     Detail,
   },
 
-  emits: ['on-completed', 'on-cancel'],
+  emits: ['on-next', 'on-cancel'],
 
   setup(props, context) {
     const tab = ref('Location');
 
-    const onCompleted = () => {
-      context.emit('on-completed');
+    const onNext = () => {
+      context.emit('on-next');
     };
 
     const onCancel = () => {
@@ -66,7 +66,7 @@ export default defineComponent({
 
     return {
       tab,
-      onCompleted,
+      onNext,
       onCancel,
     };
   },

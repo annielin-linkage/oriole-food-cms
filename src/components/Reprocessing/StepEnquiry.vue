@@ -7,7 +7,7 @@
       <Detail />
     </template>
   </Tabs>
-  <div class="flex justify-center items-center">
+  <div class="flex justify-center items-center q-pa-lg q-pb-xl bg-grey-1">
     <q-btn
       no-caps
       unelevated
