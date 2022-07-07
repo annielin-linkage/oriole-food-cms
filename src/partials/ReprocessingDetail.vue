@@ -12,13 +12,13 @@
 
       <StepTabs :steps="['Outstanding', 'Processing', 'Enquiry']" :step="step">
         <template #step-Outstanding>
-          <StepOutstanding />
+          <StepOutstanding @on-next="onNext('Processing')" />
         </template>
         <template #step-Processing>
-          <StepProcessing />
+          <StepProcessing @on-next="onNext('Enquiry')" @on-save="onSave()" />
         </template>
         <template #step-Enquiry>
-          <StepEnquiry />
+          <StepEnquiry @on-cancel="onCancel()" />
         </template>
       </StepTabs>
     </q-card>
@@ -66,10 +66,25 @@ export default defineComponent({
       model.value = false;
     };
 
+    const onNext = (nextPage: string) => {
+      step.value = nextPage;
+    };
+
+    const onSave = () => {
+      model.value = false;
+    };
+
+    const onCancel = () => {
+      model.value = false;
+    };
+
     return {
       model,
       step,
       onBack,
+      onNext,
+      onSave,
+      onCancel,
     };
   },
 });

@@ -12,7 +12,7 @@
 
       <StepTabs :steps="['Outstanding', 'Enquiry']" :step="step">
         <template #step-Outstanding>
-          <StepOutstanding @on-next="onNext()" @on-cancel="onCancel()" />
+          <StepOutstanding @on-completed="onCompleted()" @on-cancel="onCancel()" />
         </template>
         <template #step-Enquiry>
           <StepEnquiry @on-cancel="onCancel()" />
@@ -58,7 +58,7 @@ export default defineComponent({
       model.value = false;
     };
 
-    const onNext = () => {
+    const onCompleted = () => {
       step.value = 'Enquiry';
     };
 
@@ -70,7 +70,7 @@ export default defineComponent({
       model,
       step,
       onBack,
-      onNext,
+      onCompleted,
       onCancel,
     };
   },

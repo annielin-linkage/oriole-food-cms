@@ -7,6 +7,19 @@
       <Detail />
     </template>
   </Tabs>
+  <div class="flex justify-center items-center">
+    <q-btn
+      no-caps
+      unelevated
+      rounded
+      size="md"
+      color="grey-6"
+      class="text-caption"
+      style="width: 50%"
+      label="Back to list"
+      @click="onCancel()"
+    />
+  </div>
 </template>
 
 <script lang="ts">
@@ -23,11 +36,18 @@ export default defineComponent({
     Detail,
   },
 
-  setup() {
-    const tab = ref('Location');
+  emits: ['on-cancel'],
+
+  setup(props, context) {
+    const tab = ref('Confirmed');
+
+    const onCancel = () => {
+      context.emit('on-cancel');
+    };
 
     return {
       tab,
+      onCancel,
     };
   },
 });

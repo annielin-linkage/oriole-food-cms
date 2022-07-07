@@ -17,7 +17,7 @@
         color="blue-4"
         class="text-caption full-width"
         label="Completed"
-        @click="onNext()"
+        @click="onCompleted()"
       />
     </div>
     <div class="col-5">
@@ -51,13 +51,13 @@ export default defineComponent({
     Detail,
   },
 
-  emits: ['on-next', 'on-cancel'],
+  emits: ['on-completed', 'on-cancel'],
 
   setup(props, context) {
     const tab = ref('Location');
 
-    const onNext = () => {
-      context.emit('on-next');
+    const onCompleted = () => {
+      context.emit('on-completed');
     };
 
     const onCancel = () => {
@@ -66,7 +66,7 @@ export default defineComponent({
 
     return {
       tab,
-      onNext,
+      onCompleted,
       onCancel,
     };
   },

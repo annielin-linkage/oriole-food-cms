@@ -7,6 +7,33 @@
       <Detail />
     </template>
   </Tabs>
+
+  <div class="row q-pa-lg q-col-gutter-x-md">
+    <div class="col-7">
+      <q-btn
+        no-caps
+        unelevated
+        rounded
+        size="md"
+        color="yellow-8"
+        class="text-caption full-width"
+        label="Submit"
+        @click="onNext()"
+      />
+    </div>
+    <div class="col-5">
+      <q-btn
+        no-caps
+        unelevated
+        rounded
+        size="md"
+        color="grey-3"
+        class="text-caption full-width"
+        label="Cancel"
+        @click="onSave()"
+      />
+    </div>
+  </div>
 </template>
 
 <script lang="ts">
@@ -25,11 +52,23 @@ export default defineComponent({
     Detail,
   },
 
-  setup() {
-    const tab = ref('Location');
+  emits: ['on-next', 'on-save'],
+
+  setup(props, context) {
+    const tab = ref('Process');
+
+    const onNext = () => {
+      context.emit('on-next');
+    };
+
+    const onSave = () => {
+      context.emit('on-save');
+    };
 
     return {
       tab,
+      onNext,
+      onSave,
     };
   },
 });
