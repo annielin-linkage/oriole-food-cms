@@ -28,8 +28,8 @@ import { defineComponent, ref } from 'vue';
 import { useModelWrapper } from 'utils/hooks';
 
 import StepTabs from 'components/StepTabs.vue';
-import StepOutstanding from 'partials/Delivery/StepOutstanding.vue';
-import StepEnquiry from 'partials/Delivery/StepEnquiry.vue';
+import StepOutstanding from 'components/Delivery/StepOutstanding.vue';
+import StepEnquiry from 'components/Delivery/StepEnquiry.vue';
 
 export default defineComponent({
   name: 'DeliveryDetail',

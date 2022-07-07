@@ -12,45 +12,19 @@
           <FilterDate />
         </div>
       </section>
-
-      <!-- Tabs -->
-      <!-- <section>
-        <q-tabs
-          dense
-          no-caps
-          narrow-indicator
-          keep-alive
-          class="text-grey"
-          active-color="grey-8"
-          indicator-color="grey-8"
-          align="left"
-          :breakpoint="0"
-          v-model="tab"
-        >
-          <q-tab name="outstanding" class="text-caption text-weight-regular"> Outstanding </q-tab>
-          <q-tab name="enquiry" class="text-caption text-weight-regular">Enquiry</q-tab>
-        </q-tabs>
-        <q-separator color="grey-3" />
-      </section> -->
     </div>
     <div class="col">
-      <Tabs :tabs="['Outstanding', 'Enquiry']" :tab="tab">
-        <template #tab-Outstanding> <List /></template>
+      <!-- Tabs -->
+      <Tabs :tabs="['Outstanding', 'Enquiry']" :tab="tab" :breakpoint="0" :align="'left'">
+        <!-- Outstanding -->
+        <template #tab-Outstanding> <List @onDetail="onDetail" /></template>
+        <!-- Enquiry -->
         <template #tab-Enquiry> <List /></template>
       </Tabs>
     </div>
-    <!-- <div class="col scroll" style="overflow-y: scroll">
-      <q-tab-panels v-model="tab" animated>
-        <q-tab-panel name="outstanding">
-          <List />
-        </q-tab-panel>
-
-        <q-tab-panel name="enquiry">
-          <List />
-        </q-tab-panel>
-      </q-tab-panels>
-    </div> -->
   </div>
+  <!-- Detail Page -->
+  <DeliveryDetail v-model="model" />
 </template>
 
 <script lang="ts">
@@ -58,7 +32,8 @@ import { defineComponent, ref } from 'vue';
 
 import FilterDate from 'components/Input/FilterDate.vue';
 import Tabs from 'components/Tabs.vue';
-import List from 'components/Delivery/List.vue';
+import List from 'components/List.vue';
+import DeliveryDetail from 'partials/DeliveryDetail.vue';
 
 export default defineComponent({
   name: 'Delivery',
@@ -67,13 +42,21 @@ export default defineComponent({
     FilterDate,
     Tabs,
     List,
+    DeliveryDetail,
   },
 
   setup() {
+    const model = ref(false);
     const tab = ref('Outstanding');
 
+    const onDetail = () => {
+      model.value = true;
+    };
+
     return {
+      model,
       tab,
+      onDetail,
     };
   },
 });
