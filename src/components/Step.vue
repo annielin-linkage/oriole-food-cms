@@ -7,7 +7,7 @@
     <div
       v-for="item in value"
       :key="`step-${item}`"
-      class="flex items-center q-gutter-x-xs q-pa-xs"
+      class="flex items-center q-gutter-x-xs q-pa-sm"
       :style="{ opacity: step === item ? '1' : '0.4' }"
     >
       <div class="dot" :class="step != item && 'invisible'"></div>

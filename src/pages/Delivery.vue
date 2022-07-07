@@ -19,12 +19,12 @@
         <!-- Outstanding -->
         <template #tab-Outstanding> <List @onDetail="onDetail" /></template>
         <!-- Enquiry -->
-        <template #tab-Enquiry> <List /></template>
+        <template #tab-Enquiry> <List @onDetail="onDetail" /></template>
       </Tabs>
     </div>
   </div>
   <!-- Detail Page -->
-  <DeliveryDetail v-model="model" />
+  <DeliveryDetail v-model="model" :headerClass="'bg-blue-4'" />
 </template>
 
 <script lang="ts">
