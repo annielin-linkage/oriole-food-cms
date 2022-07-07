@@ -14,11 +14,12 @@
       </section>
 
       <!-- Tabs -->
-      <section>
+      <!-- <section>
         <q-tabs
           dense
           no-caps
           narrow-indicator
+          keep-alive
           class="text-grey"
           active-color="grey-8"
           indicator-color="grey-8"
@@ -30,18 +31,25 @@
           <q-tab name="enquiry" class="text-caption text-weight-regular">Enquiry</q-tab>
         </q-tabs>
         <q-separator color="grey-3" />
-      </section>
+      </section> -->
     </div>
-    <div class="col scroll" style="overflow-y: scroll">
+    <div class="col">
+      <Tabs :tabs="['Outstanding', 'Enquiry']" :tab="tab">
+        <template #tab-Outstanding> <List /></template>
+        <template #tab-Enquiry> <List /></template>
+      </Tabs>
+    </div>
+    <!-- <div class="col scroll" style="overflow-y: scroll">
       <q-tab-panels v-model="tab" animated>
         <q-tab-panel name="outstanding">
-          <!-- Outstanding List -->
-          <OutstandingList />
+          <List />
         </q-tab-panel>
 
-        <q-tab-panel name="enquiry"> Enquiry </q-tab-panel>
+        <q-tab-panel name="enquiry">
+          <List />
+        </q-tab-panel>
       </q-tab-panels>
-    </div>
+    </div> -->
   </div>
 </template>
 
@@ -49,18 +57,20 @@
 import { defineComponent, ref } from 'vue';
 
 import FilterDate from 'components/Input/FilterDate.vue';
-import OutstandingList from 'components/Delivery/OutstandingList.vue';
+import Tabs from 'components/Tabs.vue';
+import List from 'components/Delivery/List.vue';
 
 export default defineComponent({
   name: 'Delivery',
 
   components: {
     FilterDate,
-    OutstandingList,
+    Tabs,
+    List,
   },
 
   setup() {
-    const tab = ref('outstanding');
+    const tab = ref('Outstanding');
 
     return {
       tab,

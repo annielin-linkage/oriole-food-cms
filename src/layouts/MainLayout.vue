@@ -34,9 +34,3 @@ export default defineComponent({
   },
 });
 </script>
-
-<style lang="scss" scoped>
-.q-toolbar {
-  min-height: 42px;
-}
-</style>

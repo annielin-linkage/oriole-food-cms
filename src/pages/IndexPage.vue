@@ -13,7 +13,7 @@
       </div>
 
       <!-- Buttons -->
-      <div class="text-center q-gutter-y-lg" style="margin-top: 105px">
+      <div class="column text-center q-gutter-y-lg" style="margin-top: 105px">
         <!-- Reprocessing Btn -->
         <q-btn
           no-caps
