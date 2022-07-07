@@ -27,7 +27,7 @@
         <q-separator color="grey-3" />
       </section>
     </div>
-    <div class="col scroll" style="overflow-y: scroll">
+    <div class="col">
       <q-tab-panels v-model="tabActive" animated>
         <q-tab-panel v-for="item in tabs" :key="`tab-panel-${item}`" :name="item">
           <slot :name="`tab-${item}`" />

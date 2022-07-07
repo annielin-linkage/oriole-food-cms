@@ -1,6 +1,6 @@
 <template>
   <q-dialog maximized transition-show="slide-left" transition-hide="slide-right" v-model="model">
-    <q-card class="column" style="height: 100vh">
+    <q-card class="column full-height">
       <!-- Header -->
       <q-toolbar class="bg-yellow-8 text-white col-auto">
         <q-btn flat dense round icon="chevron_left" aria-label="Back" @click="onBack()" />
