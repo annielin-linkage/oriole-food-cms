@@ -14,7 +14,7 @@
           bg-color="grey-1"
           color="grey-8"
           style="opacity: 0.6"
-          :class="readonly && 'col'"
+          :class="readonly && 'col-8'"
           :readonly="readonly"
           :model-value="staff.barcode"
         />
@@ -24,8 +24,8 @@
           no-caps
           color="grey-8"
           label="Scan"
-          class="text-weight-regular col"
-          style="opacity: 0.6; min-width: 80px"
+          class="text-weight-regular col-3"
+          style="opacity: 0.6"
         />
       </div>
     </div>
@@ -45,7 +45,7 @@
             bg-color="grey-1"
             color="grey-8"
             style="opacity: 0.6"
-            :class="readonly && 'col'"
+            :class="readonly && 'col-8'"
             :readonly="readonly"
             :model-value="stockIn.barcode"
           />
@@ -55,8 +55,8 @@
             no-caps
             color="grey-8"
             label="Scan"
-            class="text-weight-regular col"
-            style="opacity: 0.6; min-width: 80px"
+            class="text-weight-regular col-3"
+            style="opacity: 0.6"
           />
         </div>
       </div>
@@ -159,7 +159,7 @@
             bg-color="grey-1"
             color="grey-8"
             style="opacity: 0.6"
-            :class="readonly && 'col'"
+            :class="readonly && 'col-8'"
             :readonly="readonly"
             :model-value="data.stockIn.barcode"
           />
@@ -169,8 +169,8 @@
             no-caps
             color="grey-8"
             label="Scan"
-            class="text-weight-regular col"
-            style="opacity: 0.6; min-width: 80px"
+            class="text-weight-regular col-3"
+            style="opacity: 0.6"
           />
         </div>
       </div>
