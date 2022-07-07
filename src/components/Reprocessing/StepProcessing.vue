@@ -1,7 +1,7 @@
 <template>
   <Tabs :tabs="['Process', 'Details']" :tab="tab">
     <template #tab-Process>
-      <Location />
+      <OrderForm />
     </template>
     <template #tab-Details>
       <Detail />
@@ -40,7 +40,7 @@
 import { defineComponent, ref } from 'vue';
 
 import Tabs from 'components/Tabs.vue';
-import Location from 'components/Reprocessing/Location.vue';
+import OrderForm from 'components/Reprocessing/OrderForm.vue';
 import Detail from 'components/Reprocessing/Detail.vue';
 
 export default defineComponent({
@@ -48,7 +48,7 @@ export default defineComponent({
 
   components: {
     Tabs,
-    Location,
+    OrderForm,
     Detail,
   },
 
