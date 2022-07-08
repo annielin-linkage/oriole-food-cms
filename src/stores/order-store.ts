@@ -347,38 +347,6 @@ export const InitialOrderState = (): { order: IOrder[], delivery: IDelivery[] } 
       ],
       resourcess: { id: uid(), stockNo: 'ZPPBS001', qty: 8, barcode: '', description: '奇妙牌急凍美國日式豬梅頭火鍋切片300克' },
     },
-    {
-      id: uid(),
-      create: '07/07/2022 12:18',
-      status: 'Enquiry', // Outstanding : order.status = Enquiry , Enquiry = completed
-      name: 'Big Big Cafe',
-      contact: '9666 7766',
-      address: '新界元朗大馬路 100 號',
-      deliveriedTime: '22/06/2022 11:04:00 AM',
-      handledBy: '0377 (John Chan)',
-      orderNo: 'DN2206220006',
-      source: [
-        { id: uid(), stockNo: 'ZZBU018', qty: 1, barcode: '', description: '冰鮮美國極佳級安格斯(Prime CAB) 西冷2公斤' },
-        { id: uid(), stockNo: 'CTMW03', qty: 20, barcode: '', description: '急凍泰國雞中翼(業務裝)1公斤裝' },
-      ],
-      resourcess: { id: uid(), stockNo: 'ZPPBS001', qty: 8, barcode: '', description: '奇妙牌急凍美國日式豬梅頭火鍋切片300克' },
-    },
-    {
-      id: uid(),
-      create: '07/08/2022 15:16',
-      status: 'Enquiry', // Outstanding : order.status = Enquiry , Enquiry = completed
-      name: 'Big Big Cafe',
-      contact: '9666 7766',
-      address: '新界元朗大馬路 100 號',
-      deliveriedTime: '22/06/2022 11:04:00 AM',
-      handledBy: '0377 (John Chan)',
-      orderNo: 'DN2206220007',
-      source: [
-        { id: uid(), stockNo: 'ZZBU018', qty: 1, barcode: '', description: '冰鮮美國極佳級安格斯(Prime CAB) 西冷2公斤' },
-        { id: uid(), stockNo: 'CTMW03', qty: 20, barcode: '', description: '急凍泰國雞中翼(業務裝)1公斤裝' },
-      ],
-      resourcess: { id: uid(), stockNo: 'ZPPBS001', qty: 8, barcode: '', description: '奇妙牌急凍美國日式豬梅頭火鍋切片300克' },
-    },
   ]
 })
 
@@ -399,7 +367,14 @@ export const useOrderStore = defineStore('order', {
         order.startReprocess2 = payload.startReprocess2;
         order.printingLabels = payload.printingLabels;
         order.status = payload.status;
-        console.log('orderSave', id, order)
+        console.log('orderSave', id, order);
+      }
+    },
+    deliveryCompleted(id: string) {
+      const delivery = this.delivery.find(o => o.id === id)
+      if (delivery) {
+        delivery.status = 'Enquiry';
+        console.log('deliveryCompleted', id);
       }
     },
   },

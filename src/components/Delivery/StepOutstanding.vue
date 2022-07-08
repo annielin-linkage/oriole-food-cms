@@ -43,7 +43,7 @@ import Tabs from 'components/Tabs.vue';
 import Location from 'components/Delivery/Location.vue';
 import Detail from 'components/Delivery/Detail.vue';
 import Sign from 'components/Delivery/Sign.vue';
-import { IDelivery } from 'src/stores/order-store';
+import { IDelivery, useOrderStore } from 'src/stores/order-store';
 
 export default defineComponent({
   name: 'StepOutstanding',
@@ -65,9 +65,12 @@ export default defineComponent({
   emits: ['on-next', 'on-cancel'],
 
   setup(props, context) {
+    const $storeOrder = useOrderStore();
+
     const tab = ref('Location');
 
     const onNext = () => {
+      $storeOrder.deliveryCompleted(props.data.id);
       context.emit('on-next');
     };
 
