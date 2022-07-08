@@ -211,7 +211,7 @@
             v-for="stockInItem in readonly ? data.stockInList : stockIntList"
             :key="stockInItem.id"
           >
-            <td>{{ stockInItem.sku }}</td>
+            <td style="font-family: Arial, Helvetica, sans-serif">{{ stockInItem.sku }}</td>
             <td
               class="text-weight-regular text-body2 text-grey-8 text-right"
               style="font-family: Arial, Helvetica, sans-serif"
