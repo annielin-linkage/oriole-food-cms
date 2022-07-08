@@ -67,7 +67,6 @@ export const InitialOrderState = (): { order: IOrder[], delivery: IDelivery[] } 
         { id: uid(), sku: '0378585742', weight: 252, barcode: 'Z0002' },
         { id: uid(), sku: '0378585743', weight: 251, barcode: 'Z0003' },
         { id: uid(), sku: '0378585744', weight: 255, barcode: 'Z0004' },
-        { id: uid(), sku: '0378585745', weight: 256, barcode: 'Z0005' },
       ],
       labour: 1,
       time: 20, // 單位分鐘
@@ -103,7 +102,6 @@ export const InitialOrderState = (): { order: IOrder[], delivery: IDelivery[] } 
         { id: uid(), sku: '0378585742', weight: 252, barcode: 'Z0002' },
         { id: uid(), sku: '0378585743', weight: 251, barcode: 'Z0003' },
         { id: uid(), sku: '0378585744', weight: 255, barcode: 'Z0004' },
-        { id: uid(), sku: '0378585745', weight: 256, barcode: 'Z0005' },
       ],
       labour: 1,
       time: 20, // 單位分鐘
@@ -139,7 +137,6 @@ export const InitialOrderState = (): { order: IOrder[], delivery: IDelivery[] } 
         { id: uid(), sku: '0378585742', weight: 252, barcode: 'Z0002' },
         { id: uid(), sku: '0378585743', weight: 251, barcode: 'Z0003' },
         { id: uid(), sku: '0378585744', weight: 255, barcode: 'Z0004' },
-        { id: uid(), sku: '0378585745', weight: 256, barcode: 'Z0005' },
       ],
       labour: 1,
       time: 20, // 單位分鐘
@@ -175,7 +172,6 @@ export const InitialOrderState = (): { order: IOrder[], delivery: IDelivery[] } 
         { id: uid(), sku: '0378585742', weight: 252, barcode: 'Z0002' },
         { id: uid(), sku: '0378585743', weight: 251, barcode: 'Z0003' },
         { id: uid(), sku: '0378585744', weight: 255, barcode: 'Z0004' },
-        { id: uid(), sku: '0378585745', weight: 256, barcode: 'Z0005' },
       ],
       labour: 1,
       time: 20, // 單位分鐘
@@ -211,7 +207,6 @@ export const InitialOrderState = (): { order: IOrder[], delivery: IDelivery[] } 
         { id: uid(), sku: '0378585742', weight: 252, barcode: 'Z0002' },
         { id: uid(), sku: '0378585743', weight: 251, barcode: 'Z0003' },
         { id: uid(), sku: '0378585744', weight: 255, barcode: 'Z0004' },
-        { id: uid(), sku: '0378585745', weight: 256, barcode: 'Z0005' },
       ],
       labour: 1,
       time: 20, // 單位分鐘
@@ -247,7 +242,6 @@ export const InitialOrderState = (): { order: IOrder[], delivery: IDelivery[] } 
         { id: uid(), sku: '0378585742', weight: 252, barcode: 'Z0002' },
         { id: uid(), sku: '0378585743', weight: 251, barcode: 'Z0003' },
         { id: uid(), sku: '0378585744', weight: 255, barcode: 'Z0004' },
-        { id: uid(), sku: '0378585745', weight: 256, barcode: 'Z0005' },
       ],
       labour: 1,
       time: 20, // 單位分鐘
