@@ -28,7 +28,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType, ref } from 'vue';
+import { defineComponent, PropType, ref, watch } from 'vue';
 
 import { useModelWrapper } from 'utils/hooks';
 
@@ -62,7 +62,7 @@ export default defineComponent({
   setup(props, context) {
     const model = ref(useModelWrapper(props, context.emit, 'modelValue'));
 
-    const step = ref('Outstanding');
+    const step = ref(props.data.status);
 
     const onBack = () => {
       model.value = false;
@@ -75,6 +75,13 @@ export default defineComponent({
     const onCancel = () => {
       model.value = false;
     };
+
+    watch(
+      () => props.data,
+      v => {
+        step.value = v.status;
+      }
+    );
 
     return {
       model,
