@@ -21,25 +21,21 @@
       <div>Deliveried Time :</div>
       <div class="text-blue-4 text-weight-regular">{{ done ? data.deliveriedTime : '-' }}</div>
     </div>
-
-    <!-- Sign -->
-    <Sign />
+    <!-- Handled by -->
+    <div class="q-gutter-y-xs">
+      <div>Handled by :</div>
+      <div class="text-blue-4 text-weight-regular">{{ done ? data.handledBy : '-' }}</div>
+    </div>
   </section>
 </template>
 
 <script lang="ts">
 import { defineComponent, PropType } from 'vue';
 
-import Sign from 'components/Delivery/Sign.vue';
-
 import { IDelivery } from 'src/stores/order-store';
 
 export default defineComponent({
   name: 'Location',
-
-  components: {
-    Sign,
-  },
 
   props: {
     data: {

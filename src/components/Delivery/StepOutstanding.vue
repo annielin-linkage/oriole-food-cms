@@ -2,6 +2,7 @@
   <Tabs :tabs="['Location', 'Details']" :tab="tab">
     <template #tab-Location>
       <Location v-if="data" :data="data" :done="false" />
+      <Sign />
     </template>
     <template #tab-Details>
       <Detail v-if="data" :data="data" />
@@ -24,7 +25,7 @@
         no-caps
         unelevated
         size="md"
-        color="grey-3"
+        color="grey-6"
         class="text-caption full-width"
         label="Cancel"
         @click="onCancel()"
@@ -39,6 +40,7 @@ import { defineComponent, PropType, ref } from 'vue';
 import Tabs from 'components/Tabs.vue';
 import Location from 'components/Delivery/Location.vue';
 import Detail from 'components/Delivery/Detail.vue';
+import Sign from 'components/Delivery/Sign.vue';
 import { IDelivery } from 'src/stores/order-store';
 
 export default defineComponent({
@@ -48,6 +50,7 @@ export default defineComponent({
     Tabs,
     Location,
     Detail,
+    Sign,
   },
 
   props: {
