@@ -256,9 +256,9 @@ export default defineComponent({
     const stockInBarcodes = ref({ id: uid(), stockNo: 'ZZBU018', barcode: '', qty: 8 });
 
     const stockIntList = ref([
-      { id: uid(), sku: '0378585742', weight: 250 },
-      { id: uid(), sku: '0378585742', weight: 252 },
-      { id: uid(), sku: '0378585742', weight: 248 },
+      // { id: uid(), sku: '0378585742', weight: 250 },
+      // { id: uid(), sku: '0378585742', weight: 252 },
+      // { id: uid(), sku: '0378585742', weight: 248 },
     ]);
 
     const stockInPayload = reactive({

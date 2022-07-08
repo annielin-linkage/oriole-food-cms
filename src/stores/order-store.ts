@@ -13,7 +13,7 @@ export interface IOrder {
   startReprocess2: string, // DateTime
   printingLabels: string, // DateTime
   stockIn: { id: string, stockNo: string, qty: number, barcode: '', description: string, },
-  stockInList: Array<{ id: string, sku: string, weight: string, qty: number, barcode: string | null }>,
+  stockInList: Array<{ id: string, sku: string, weight: number, barcode: string | null }>,
   labour: number,
   time: number | null, // 單位分鐘
   delivery: {
@@ -63,9 +63,11 @@ export const InitialOrderState = (): { order: IOrder[], delivery: IDelivery[] } 
       printingLabels: '', // DateTime
       stockIn: { id: uid(), stockNo: 'ZZBR026', qty: 8, barcode: '', description: '冰鮮美國極佳級安格斯(Prime CAB)西冷 250g' },
       stockInList: [
-        { id: uid(), sku: '0378585742', weight: '250g', qty: 2, barcode: 'Z0001', },
-        { id: uid(), sku: '0378585742', weight: '252g', qty: 4, barcode: 'Z0002' },
-        { id: uid(), sku: '0378585742', weight: '248g', qty: 2, barcode: 'Z0003' },
+        { id: uid(), sku: '0378585741', weight: 250, barcode: 'Z0001', },
+        { id: uid(), sku: '0378585742', weight: 252, barcode: 'Z0002' },
+        { id: uid(), sku: '0378585743', weight: 251, barcode: 'Z0003' },
+        { id: uid(), sku: '0378585744', weight: 255, barcode: 'Z0004' },
+        { id: uid(), sku: '0378585745', weight: 256, barcode: 'Z0005' },
       ],
       labour: 1,
       time: 20, // 單位分鐘
@@ -97,9 +99,11 @@ export const InitialOrderState = (): { order: IOrder[], delivery: IDelivery[] } 
       printingLabels: '', // DateTime
       stockIn: { id: uid(), stockNo: 'ZZBR026', qty: 8, barcode: '', description: '冰鮮美國極佳級安格斯(Prime CAB)西冷 250g' },
       stockInList: [
-        { id: uid(), sku: '0378585742', weight: '250g', qty: 2, barcode: 'Z0001', },
-        { id: uid(), sku: '0378585742', weight: '252g', qty: 4, barcode: 'Z0002' },
-        { id: uid(), sku: '0378585742', weight: '248g', qty: 2, barcode: 'Z0003' },
+        { id: uid(), sku: '0378585741', weight: 250, barcode: 'Z0001', },
+        { id: uid(), sku: '0378585742', weight: 252, barcode: 'Z0002' },
+        { id: uid(), sku: '0378585743', weight: 251, barcode: 'Z0003' },
+        { id: uid(), sku: '0378585744', weight: 255, barcode: 'Z0004' },
+        { id: uid(), sku: '0378585745', weight: 256, barcode: 'Z0005' },
       ],
       labour: 1,
       time: 20, // 單位分鐘
@@ -131,9 +135,11 @@ export const InitialOrderState = (): { order: IOrder[], delivery: IDelivery[] } 
       printingLabels: '', // DateTime
       stockIn: { id: uid(), stockNo: 'ZZBR026', qty: 8, barcode: '', description: '冰鮮美國極佳級安格斯(Prime CAB)西冷 250g' },
       stockInList: [
-        { id: uid(), sku: '0378585742', weight: '250g', qty: 2, barcode: 'Z0001', },
-        { id: uid(), sku: '0378585742', weight: '252g', qty: 4, barcode: 'Z0002' },
-        { id: uid(), sku: '0378585742', weight: '248g', qty: 2, barcode: 'Z0003' },
+        { id: uid(), sku: '0378585741', weight: 250, barcode: 'Z0001', },
+        { id: uid(), sku: '0378585742', weight: 252, barcode: 'Z0002' },
+        { id: uid(), sku: '0378585743', weight: 251, barcode: 'Z0003' },
+        { id: uid(), sku: '0378585744', weight: 255, barcode: 'Z0004' },
+        { id: uid(), sku: '0378585745', weight: 256, barcode: 'Z0005' },
       ],
       labour: 1,
       time: 20, // 單位分鐘
@@ -165,9 +171,11 @@ export const InitialOrderState = (): { order: IOrder[], delivery: IDelivery[] } 
       printingLabels: '', // DateTime
       stockIn: { id: uid(), stockNo: 'ZZBR026', qty: 8, barcode: '', description: '冰鮮美國極佳級安格斯(Prime CAB)西冷 250g' },
       stockInList: [
-        { id: uid(), sku: '0378585742', weight: '250g', qty: 2, barcode: 'Z0001', },
-        { id: uid(), sku: '0378585742', weight: '252g', qty: 4, barcode: 'Z0002' },
-        { id: uid(), sku: '0378585742', weight: '248g', qty: 2, barcode: 'Z0003' },
+        { id: uid(), sku: '0378585741', weight: 250, barcode: 'Z0001', },
+        { id: uid(), sku: '0378585742', weight: 252, barcode: 'Z0002' },
+        { id: uid(), sku: '0378585743', weight: 251, barcode: 'Z0003' },
+        { id: uid(), sku: '0378585744', weight: 255, barcode: 'Z0004' },
+        { id: uid(), sku: '0378585745', weight: 256, barcode: 'Z0005' },
       ],
       labour: 1,
       time: 20, // 單位分鐘
@@ -199,9 +207,11 @@ export const InitialOrderState = (): { order: IOrder[], delivery: IDelivery[] } 
       printingLabels: '', // DateTime
       stockIn: { id: uid(), stockNo: 'ZZBR026', qty: 8, barcode: '', description: '冰鮮美國極佳級安格斯(Prime CAB)西冷 250g' },
       stockInList: [
-        { id: uid(), sku: '0378585742', weight: '250g', qty: 2, barcode: 'Z0001', },
-        { id: uid(), sku: '0378585742', weight: '252g', qty: 4, barcode: 'Z0002' },
-        { id: uid(), sku: '0378585742', weight: '248g', qty: 2, barcode: 'Z0003' },
+        { id: uid(), sku: '0378585741', weight: 250, barcode: 'Z0001', },
+        { id: uid(), sku: '0378585742', weight: 252, barcode: 'Z0002' },
+        { id: uid(), sku: '0378585743', weight: 251, barcode: 'Z0003' },
+        { id: uid(), sku: '0378585744', weight: 255, barcode: 'Z0004' },
+        { id: uid(), sku: '0378585745', weight: 256, barcode: 'Z0005' },
       ],
       labour: 1,
       time: 20, // 單位分鐘
@@ -233,9 +243,11 @@ export const InitialOrderState = (): { order: IOrder[], delivery: IDelivery[] } 
       printingLabels: '', // DateTime
       stockIn: { id: uid(), stockNo: 'ZZBR026', qty: 8, barcode: '', description: '冰鮮美國極佳級安格斯(Prime CAB)西冷 250g' },
       stockInList: [
-        { id: uid(), sku: '0378585742', weight: '250g', qty: 2, barcode: 'Z0001', },
-        { id: uid(), sku: '0378585742', weight: '252g', qty: 4, barcode: 'Z0002' },
-        { id: uid(), sku: '0378585742', weight: '248g', qty: 2, barcode: 'Z0003' },
+        { id: uid(), sku: '0378585741', weight: 250, barcode: 'Z0001', },
+        { id: uid(), sku: '0378585742', weight: 252, barcode: 'Z0002' },
+        { id: uid(), sku: '0378585743', weight: 251, barcode: 'Z0003' },
+        { id: uid(), sku: '0378585744', weight: 255, barcode: 'Z0004' },
+        { id: uid(), sku: '0378585745', weight: 256, barcode: 'Z0005' },
       ],
       labour: 1,
       time: 20, // 單位分鐘
