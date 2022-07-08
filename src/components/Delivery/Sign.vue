@@ -1,5 +1,5 @@
 <template>
-  <div class="sign-box bg-grey-2 relative-position">
+  <div id="signContainer" class="sign-box bg-grey-2 relative-position">
     <div class="absolute-top-left text-grey-7 text-caption q-px-xs">customer signature</div>
     <canvas class="canvas" />
   </div>
@@ -22,6 +22,8 @@ export default {
         maxWidth: 2,
         penColor: 'rgb(0, 0, 0)',
       });
+
+      canvas.width = document.getElementById('signContainer').offsetWidth;
     }
 
     onMounted(() => {
