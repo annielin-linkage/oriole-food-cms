@@ -7,7 +7,7 @@
           <q-input
             outlined
             dense
-            label="staff barcode"
+            label="Delivery Order"
             bg-color="grey-1"
             color="grey-8"
             style="opacity: 0.6"
