@@ -1,7 +1,7 @@
 <template>
   <Tabs :tabs="['Confirmed', 'Details']" :tab="tab">
     <template #tab-Confirmed>
-      <OrderForm readonly v-if="data" :data="data" />
+      <OrderForm readonly v-if="data" :data="data" :form="form" />
     </template>
     <template #tab-Details>
       <Detail v-if="data" :data="data" />
@@ -23,7 +23,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType, ref } from 'vue';
+import { defineComponent, PropType, reactive, ref } from 'vue';
 
 import Tabs from 'components/Tabs.vue';
 import OrderForm from 'components/Reprocessing/OrderForm.vue';
@@ -51,12 +51,19 @@ export default defineComponent({
   setup(props, context) {
     const tab = ref('Confirmed');
 
+    const form = reactive({
+      startReprocess: props.data.startReprocess,
+      startReprocess2: props.data.startReprocess2,
+      printingLabels: props.data.printingLabels,
+    });
+
     const onCancel = () => {
       context.emit('on-cancel');
     };
 
     return {
       tab,
+      form,
       onCancel,
     };
   },
