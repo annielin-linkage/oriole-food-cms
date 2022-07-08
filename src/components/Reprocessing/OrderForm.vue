@@ -212,7 +212,10 @@
             :key="stockInItem.id"
           >
             <td>{{ stockInItem.sku }}</td>
-            <td class="text-weight-regular text-body2 text-grey-8 text-right">
+            <td
+              class="text-weight-regular text-body2 text-grey-8 text-right"
+              style="font-family: Arial, Helvetica, sans-serif"
+            >
               {{ stockInItem.weight }}g
             </td>
           </tr>
