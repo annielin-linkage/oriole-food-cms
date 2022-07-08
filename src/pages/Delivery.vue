@@ -3,13 +3,26 @@
     <div class="col-auto">
       <!-- Filters -->
       <section class="text-weight-light text-body2 q-pa-lg q-gutter-y-md">
-        <div>
-          <div>From :</div>
-          <FilterDate :rules="[]" v-model="filters.dateFrom" />
-        </div>
-        <div>
-          <div>To :</div>
-          <FilterDate :rules="[]" v-model="filters.dateTo" />
+        <div class="row">
+          <q-input
+            outlined
+            dense
+            label="staff barcode"
+            bg-color="grey-1"
+            color="grey-8"
+            style="opacity: 0.6"
+            class="col-8"
+            v-model="filters.scan"
+          />
+          <q-btn
+            unelevated
+            no-caps
+            color="grey-8"
+            label="Scan"
+            class="text-weight-regular col-4"
+            style="opacity: 0.6"
+            @click="onDetail(findDeliveryOutstanding[0])"
+          />
         </div>
       </section>
     </div>
@@ -35,7 +48,6 @@
 import { defineComponent, ref } from 'vue';
 import { storeToRefs } from 'pinia';
 
-import FilterDate from 'components/Input/FilterDate.vue';
 import Tabs from 'components/Tabs.vue';
 import List from 'components/List.vue';
 import DeliveryDetail from 'partials/DeliveryDetail.vue';
@@ -46,7 +58,6 @@ export default defineComponent({
   name: 'Delivery',
 
   components: {
-    FilterDate,
     Tabs,
     List,
     DeliveryDetail,
@@ -61,8 +72,7 @@ export default defineComponent({
     const tab = ref('Outstanding');
 
     const filters = ref({
-      dateFrom: '',
-      dateTo: '',
+      scan: '',
     });
 
     const order = ref<IDelivery>();
