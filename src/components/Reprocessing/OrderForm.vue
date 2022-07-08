@@ -60,7 +60,7 @@
 
     <div>
       <div class="flex justify-between text-body2">
-        <div>2. Start Reprocess</div>
+        <div>2. Start Reprocessing</div>
         <div v-if="!!data.startReprocess">Step 2</div>
         <div v-else>Step 1</div>
       </div>
@@ -70,7 +70,7 @@
         unelevated
         no-caps
         color="grey-8"
-        label="Start Record 1"
+        label="Start Process 1"
         class="full-width text-weight-regular q-my-md"
         style="opacity: 0.6"
         @click="$emit('on-startreprocess')"
@@ -80,7 +80,7 @@
         unelevated
         no-caps
         color="grey-8"
-        label="Start Record 2"
+        label="Start Process 2"
         class="full-width text-weight-regular q-my-md"
         style="opacity: 0.6"
         @click="$emit('on-startreprocess2')"
@@ -95,7 +95,7 @@
         outlined
         dense
         readonly
-        label="start record 1"
+        label="start process 1"
         bg-color="grey-1"
         color="grey-8"
         style="opacity: 0.6"
@@ -107,7 +107,7 @@
         outlined
         dense
         readonly
-        label="start record 2"
+        label="start process 2"
         bg-color="grey-1"
         color="grey-8"
         style="opacity: 0.6"
@@ -149,7 +149,7 @@
           <i>{{ readonly ? data.stockIn.stockNo : stockInBarcodes.stockNo }}</i>
           <i>x{{ readonly ? data.stockIn.qty : stockInBarcodes.qty }}</i>
         </div>
-        <div class="row">
+        <div class="row q-gutter-y-sm">
           <q-input
             v-if="readonly"
             outlined
@@ -162,26 +162,38 @@
             :readonly="readonly"
             :model-value="data.stockIn.barcode"
           />
-          <q-input
-            v-else
-            outlined
-            dense
-            label="Generate Barcode"
-            bg-color="grey-1"
-            color="grey-8"
-            style="opacity: 0.6"
-            :class="readonly ? 'col-12' : 'col-8'"
-            :readonly="readonly"
-            v-model="barcode"
-          />
+          <template v-else>
+            <q-input
+              outlined
+              dense
+              label="Generate Barcode"
+              bg-color="grey-1"
+              color="grey-8"
+              style="opacity: 0.6"
+              class="col-12"
+              v-model="stockInPayload.sku"
+            />
+            <q-input
+              outlined
+              dense
+              label="weight"
+              bg-color="grey-1"
+              color="grey-8"
+              style="opacity: 0.6"
+              class="col-12"
+              v-model="stockInPayload.weight"
+            />
+          </template>
+
           <q-btn
             v-if="!readonly"
             unelevated
             no-caps
             color="grey-8"
             label="Scan"
-            class="text-weight-regular col-4"
+            class="text-weight-regular col-12"
             style="opacity: 0.6"
+            @click="onSaveStockIn"
           />
         </div>
       </div>
@@ -190,19 +202,18 @@
         <thead>
           <tr>
             <th class="text-weight-regular text-body2 text-grey-8 text-left">SKU</th>
-            <th class="text-weight-regular text-body2 text-grey-8">Weight</th>
-            <th class="text-weight-regular text-body2 text-grey-8 text-right">Qty</th>
+            <th class="text-weight-regular text-body2 text-grey-8 text-right">Weight</th>
           </tr>
         </thead>
         <!-- TODO: dispatch data -->
-        <tbody v-if="readonly">
-          <tr v-for="stockInItem in data.stockInList" :key="stockInItem.id">
+        <tbody>
+          <tr
+            v-for="stockInItem in readonly ? data.stockInList : stockIntList"
+            :key="stockInItem.id"
+          >
             <td>{{ stockInItem.sku }}</td>
-            <td class="text-weight-regular text-body2 text-grey-8 text-center">
-              {{ stockInItem.weight }}
-            </td>
             <td class="text-weight-regular text-body2 text-grey-8 text-right">
-              {{ stockInItem.qty }}
+              {{ stockInItem.weight }}g
             </td>
           </tr>
         </tbody>
@@ -212,7 +223,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType, ref } from 'vue';
+import { defineComponent, PropType, reactive, ref } from 'vue';
 import { uid } from 'quasar';
 
 import { IOrder } from 'src/stores/order-store';
@@ -245,19 +256,34 @@ export default defineComponent({
     const stockInBarcodes = ref({ id: uid(), stockNo: 'ZZBU018', barcode: '', qty: 8 });
 
     const stockIntList = ref([
-      { id: uid(), sku: '0378585742', weight: '250g', qty: 2 },
-      { id: uid(), sku: '0378585742', weight: '252g', qty: 4 },
-      { id: uid(), sku: '0378585742', weight: '248g', qty: 2 },
+      { id: uid(), sku: '0378585742', weight: 250 },
+      { id: uid(), sku: '0378585742', weight: 252 },
+      { id: uid(), sku: '0378585742', weight: 248 },
     ]);
 
-    const barcode = ref();
+    const stockInPayload = reactive({
+      id: uid(),
+      sku: '',
+      weight: null,
+    });
+
+    const onSaveStockIn = () => {
+      if (!!stockInPayload.weight && stockInPayload.weight > 0) {
+        // @ts-ignore
+        stockIntList.value.push({ ...stockInPayload });
+        stockInPayload.id = uid();
+        stockInPayload.sku = '';
+        stockInPayload.weight = null;
+      }
+    };
 
     return {
-      barcode,
       staffBarcodes,
       stockInBarcodes,
       stockOutBarcodes,
       stockIntList,
+      stockInPayload,
+      onSaveStockIn,
     };
   },
 });
