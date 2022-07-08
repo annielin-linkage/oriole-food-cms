@@ -33,7 +33,7 @@
         no-caps
         unelevated
         size="md"
-        color="grey-3"
+        color="grey-6"
         class="text-caption full-width"
         label="Save"
         @click="onSave()"
