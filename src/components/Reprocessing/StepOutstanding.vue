@@ -9,7 +9,7 @@
       color="yellow-8"
       class="text-caption"
       style="width: 50%"
-      label="Start Reprocess"
+      label="Start Reprocessing"
       @click="onNext()"
     />
   </div>
