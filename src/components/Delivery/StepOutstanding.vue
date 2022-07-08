@@ -2,7 +2,9 @@
   <Tabs :tabs="['Location', 'Details']" :tab="tab">
     <template #tab-Location>
       <Location v-if="data" :data="data" :done="false" />
-      <Sign />
+      <div class="q-pa-md">
+        <Sign />
+      </div>
     </template>
     <template #tab-Details>
       <Detail v-if="data" :data="data" />
